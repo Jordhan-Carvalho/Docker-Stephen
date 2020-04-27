@@ -15,24 +15,17 @@ export const Fib = () => {
   };
 
   const [state, setState] = useState(initialData);
-
   useEffect(() => {
-    fetchValues();
-    fetchIndexes();
+    fetchValuesAndIndexes();
   }, []);
 
-  const fetchIndexes = async () => {
+  const fetchValuesAndIndexes = async () => {
+    const values = await axios.get("/api/values/current");
     const seenIndexes = await axios.get("/api/values/all");
+
     setState({
       ...state,
       seenIndexes: seenIndexes.data,
-    });
-  };
-
-  const fetchValues = async () => {
-    const values = await axios.get("/api/values/current");
-    setState({
-      ...state,
       values: values.data,
     });
   };
@@ -42,7 +35,7 @@ export const Fib = () => {
   };
 
   const renderValues = (): JSX.Element[] => {
-    const entries = [];
+    const entries: JSX.Element[] = [];
     for (let key in state.values) {
       entries.push(
         <div key={key}>

@@ -5,12 +5,11 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { OtherPage } from "./OtherPage";
 import { Fib } from "./Fib";
 
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+        <header>
           <h1 className="App-title">Fib Calculator UPDATED!</h1>
           <Link to="/">Home</Link>
           <Link to="/otherpage">Other Page</Link>
@@ -22,6 +21,6 @@ function App() {
       </div>
     </Router>
   );
-}
+};
 
 export default App;
